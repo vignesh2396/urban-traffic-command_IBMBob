@@ -1,0 +1,36 @@
+name: UrbanPulse CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality:
+    name: Lint + Security + Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint with ruff
+        run: ruff check .
+
+      - name: Dependency vulnerability scan
+        run: pip-audit
+
+      - name: Run unit tests
+        env:
+          GEMINI_API_KEY: "test-key-placeholder"
+          OPENWEATHER_API_KEY: ""
+        run: pytest tests/ -v --tb=short

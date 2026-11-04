@@ -1,0 +1,31 @@
+# ── Core AI / Agentic Framework ───────────────────────────────────────────────
+langgraph>=0.2.0
+langchain-core>=0.3.0
+google-genai>=1.0.0
+
+# ── RAG / Vector Store ────────────────────────────────────────────────────────
+# chromadb requires onnxruntime which has no wheel for Python 3.15.
+# Install with: pip install chromadb --no-deps
+# Then install its other deps: pip install -r requirements-chromadb-deps.txt
+chromadb>=0.5.0
+
+# ── UI ────────────────────────────────────────────────────────────────────────
+streamlit>=1.37.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+requests>=2.32.0
+python-dotenv>=1.0.0
+pydantic>=2.7.0
+pandas>=2.2.0
+numpy>=1.26.0
+
+# ── Video / Image generation ──────────────────────────────────────────────────
+moviepy>=1.0.3
+pillow>=10.0.0
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+pytest>=8.2.0
+
+# ── Code quality / Security ───────────────────────────────────────────────────
+ruff>=0.5.0
+pip-audit>=2.7.0

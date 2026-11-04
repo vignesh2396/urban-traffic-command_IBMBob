@@ -1,0 +1,33 @@
+# chromadb's transitive dependencies installed separately because
+# onnxruntime has no wheel for Python 3.15. Install chromadb itself with
+# --no-deps, then install this file.
+#
+#   pip install chromadb --no-deps
+#   pip install -r requirements-chromadb-deps.txt
+#
+bcrypt
+build
+grpcio
+httpx
+importlib-resources
+jsonschema
+kubernetes
+mmh3
+numpy
+opentelemetry-api
+opentelemetry-exporter-otlp-proto-grpc
+opentelemetry-sdk
+orjson
+overrides
+pybase64
+pydantic
+pydantic-settings
+pypika
+pyyaml
+rich
+tenacity
+tokenizers
+tqdm
+typer
+typing-extensions
+uvicorn
