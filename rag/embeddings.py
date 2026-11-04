@@ -26,16 +26,20 @@ class _GeminiEmbeddingFunction(EmbeddingFunction):
     """Thin wrapper that calls the Gemini embedding API directly,
     bypassing chromadb's built-in wrapper which uses a stale SDK API."""
 
+    def __init__(self):
+        pass
+
     def __call__(self, input: Documents) -> Embeddings:
         client = genai.Client(api_key=settings.GEMINI_API_KEY)
-        result = client.models.embed_content(
-            model=settings.EMBEDDING_MODEL,
-            contents=input,
-        )
-        # New SDK returns EmbedContentResponse with .embeddings list of ContentEmbedding
-        if isinstance(input, str):
-            return [result.embeddings[0].values]
-        return [e.values for e in result.embeddings]
+        texts = [input] if isinstance(input, str) else list(input)
+        embeddings = []
+        for text in texts:
+            result = client.models.embed_content(
+                model=settings.EMBEDDING_MODEL,
+                contents=text,
+            )
+            embeddings.append(result.embeddings[0].values)
+        return embeddings
 
 
 

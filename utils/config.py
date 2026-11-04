@@ -63,7 +63,7 @@ class Settings:
     # --- RAG ---
     RAG_TOP_K: int = int(os.getenv("RAG_TOP_K", "3"))
     EMBEDDING_MODEL: str = os.getenv(
-        "EMBEDDING_MODEL", "models/embedding-001"
+        "EMBEDDING_MODEL", "models/gemini-embedding-001"
     )  # Gemini embedding
 
 
