@@ -1,0 +1,146 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>UrbanPulse — Delivery Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.6; background: #ffffff; color: #1f2328; }
+  .container { max-width: 760px; margin: 0 auto; padding: 32px 24px; }
+  h1 { font-size: 24px; font-weight: 700; color: #0D1B2A; margin-bottom: 4px; }
+  .subtitle { color: #57606a; font-size: 13px; margin-bottom: 28px; }
+  h2 { font-size: 16px; font-weight: 600; color: #0D1B2A; margin: 24px 0 10px; border-bottom: 2px solid #F5A623; padding-bottom: 4px; }
+  h3 { font-size: 14px; font-weight: 600; color: #1f2328; margin: 16px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 12px; }
+  th { background: #0D1B2A; color: #F5A623; text-align: left; padding: 7px 10px; font-weight: 600; }
+  td { padding: 6px 10px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f8fa; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .badge-pass { background: #d1fae5; color: #065f46; }
+  .badge-info { background: #dbeafe; color: #1e40af; }
+  .badge-warn { background: #fef3c7; color: #92400e; }
+  .badge-done { background: #ede9fe; color: #4c1d95; }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .summary-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 12px; text-align: center; }
+  .summary-card .num { font-size: 28px; font-weight: 700; color: #0D1B2A; }
+  .summary-card .label { font-size: 11px; color: #57606a; margin-top: 2px; }
+  .accent { color: #F5A623; font-weight: 700; }
+  .url { font-family: monospace; font-size: 12px; color: #3b82d4; }
+  pre { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px; font-size: 12px; white-space: pre-wrap; margin-bottom: 12px; }
+  footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #57606a; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🚦 UrbanPulse — Delivery Report</h1>
+  <p class="subtitle">AI-Based Urban Traffic Command &amp; Incident Response System | IBM SkillsBuild Gartner Program 2026 | Agentic AI Capstone</p>
+
+  <div class="summary-grid">
+    <div class="summary-card"><div class="num accent">24</div><div class="label">Tests Passing</div></div>
+    <div class="summary-card"><div class="num accent">7</div><div class="label">AI Agents</div></div>
+    <div class="summary-card"><div class="num accent">13</div><div class="label">PPT Slides</div></div>
+    <div class="summary-card"><div class="num accent">80s</div><div class="label">Demo Video</div></div>
+  </div>
+
+  <h2>✅ Task Completion Status</h2>
+  <table>
+    <tr><th>Task</th><th>Status</th><th>Detail</th></tr>
+    <tr><td>Install dependencies &amp; run project</td><td><span class="badge badge-pass">DONE</span></td><td>Streamlit running at <span class="url">http://localhost:8501</span></td></tr>
+    <tr><td>LLM Agent testing (all parameters)</td><td><span class="badge badge-pass">DONE</span></td><td>15 LLM tests + 9 unit tests = 24/24 passing</td></tr>
+    <tr><td>PowerPoint presentation</td><td><span class="badge badge-pass">DONE</span></td><td>UrbanPulse_Presentation.pptx — 13 slides</td></tr>
+    <tr><td>moviepy+PIL video generator</td><td><span class="badge badge-pass">DONE</span></td><td>create_video.py → UrbanPulse_Demo.mp4 (80s, 1920×1080)</td></tr>
+    <tr><td>README.md for GitHub</td><td><span class="badge badge-pass">DONE</span></td><td>With badges, test table, quick-start, architecture</td></tr>
+    <tr><td>.gitignore file</td><td><span class="badge badge-pass">DONE</span></td><td>Python, venv, .env, DB, ChromaDB, logs, OS artifacts</td></tr>
+    <tr><td>requirements.txt</td><td><span class="badge badge-pass">DONE</span></td><td>Added moviepy, pillow, numpy + fixed embedding model</td></tr>
+    <tr><td>GitHub deployment</td><td><span class="badge badge-pass">DONE</span></td><td>2 commits pushed to main branch</td></tr>
+  </table>
+
+  <h2>🧪 LLM Test Results — 24/24 PASSED</h2>
+  <table>
+    <tr><th>ID</th><th>Category</th><th>Test Name</th><th>Result</th></tr>
+    <tr><td>TC-LLM-01</td><td>Correctness</td><td>Congestion classification accuracy</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-02</td><td>Correctness</td><td>CRITICAL accident classification</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-03</td><td>Faithfulness</td><td>RAG sources cited in output</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-04</td><td>Hallucination</td><td>Schema compliance — valid enum values only</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-05</td><td>Robustness</td><td>Malformed JSON → rule-based fallback</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-06</td><td>Robustness</td><td>API exception → fallback, no crash</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-07</td><td>Safety</td><td>Prompt injection resistance</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-08</td><td>RAG</td><td>Empty RAG → LLM general knowledge fallback</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-09</td><td>Robustness</td><td>Severity score clamped to 1–10</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-10</td><td>Explainability</td><td>Reasoning field always populated</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-11</td><td>Traceability</td><td>Agent trace entry appended after LLM call</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-12</td><td>Performance</td><td>Investigation completes in &lt; 2 seconds</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-13</td><td>HITL</td><td>Severity ≥ 9 → awaiting_human = True</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-14</td><td>HITL</td><td>Severity &lt; 9 → gate skipped</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td>TC-LLM-15</td><td>Schema</td><td>All 10 required incident fields present</td><td><span class="badge badge-pass">PASS</span></td></tr>
+    <tr><td colspan="2" style="font-weight:600">Unit Tests (9)</td><td>Congestion detection (6) + Sensor tools (3)</td><td><span class="badge badge-pass">9/9 PASS</span></td></tr>
+  </table>
+
+  <h2>📦 Deliverables Created</h2>
+  <table>
+    <tr><th>File</th><th>Type</th><th>Description</th></tr>
+    <tr><td>tests/test_llm_agent.py</td><td><span class="badge badge-info">New</span></td><td>15 LLM evaluation tests (correctness, faithfulness, safety, HITL)</td></tr>
+    <tr><td>tests/test_sensor_tools.py</td><td><span class="badge badge-warn">Fixed</span></td><td>Corrected mock path for log_action — all 3 tests now pass</td></tr>
+    <tr><td>UrbanPulse_Presentation.pptx</td><td><span class="badge badge-info">New</span></td><td>13-slide presentation (dark/light themes, speaker notes)</td></tr>
+    <tr><td>create_video.py</td><td><span class="badge badge-info">New</span></td><td>moviepy+PIL 1920×1080 MP4 generator — 10 slides, 80s duration</td></tr>
+    <tr><td>UrbanPulse_Demo.mp4</td><td><span class="badge badge-info">New</span></td><td>Rendered video (80s, 1920×1080, 24fps, fade transitions)</td></tr>
+    <tr><td>assets/slide_previews/</td><td><span class="badge badge-info">New</span></td><td>10 PNG slide previews (1920×1080 each)</td></tr>
+    <tr><td>README.md</td><td><span class="badge badge-warn">Updated</span></td><td>Badges, test table, quick-start, architecture, video instructions</td></tr>
+    <tr><td>.gitignore</td><td><span class="badge badge-info">New</span></td><td>Python, venv, secrets, DB, ChromaDB, logs, IDE, OS artifacts</td></tr>
+    <tr><td>requirements.txt</td><td><span class="badge badge-warn">Updated</span></td><td>Added moviepy, pillow, numpy — organised by category</td></tr>
+    <tr><td>rag/embeddings.py</td><td><span class="badge badge-warn">Fixed</span></td><td>Gemini embedding model → gemini-embedding-001; per-text loop</td></tr>
+    <tr><td>utils/config.py</td><td><span class="badge badge-warn">Fixed</span></td><td>Default EMBEDDING_MODEL → models/gemini-embedding-001</td></tr>
+  </table>
+
+  <h2>🐙 GitHub Repository</h2>
+  <table>
+    <tr><th>Item</th><th>Value</th></tr>
+    <tr><td>Repository URL</td><td><span class="url">https://github.com/vignesh2396/urban-traffic-command_IBMBob</span></td></tr>
+    <tr><td>Branch</td><td>main</td></tr>
+    <tr><td>Commits</td><td>2 (initial release + fixes)</td></tr>
+    <tr><td>Files pushed</td><td>35 source files + tests + presentation + video script</td></tr>
+    <tr><td>CI/CD</td><td>GitHub Actions workflow included (.github/workflows/ci.yml)</td></tr>
+  </table>
+
+  <h2>🚀 Running the App</h2>
+  <pre>
+# Clone
+git clone https://github.com/vignesh2396/urban-traffic-command_IBMBob.git
+cd urban-traffic-command_IBMBob
+
+# Install
+pip install -r requirements.txt
+
+# Configure (add GEMINI_API_KEY)
+cp .env.example .env
+
+# Seed DB + RAG
+python -m data.seed_data
+python -m rag.embeddings
+
+# Launch
+streamlit run app.py
+# → http://localhost:8501
+
+# Run all tests
+pytest tests/ -v         # 24/24 PASS
+
+# Generate video
+python create_video.py   # → UrbanPulse_Demo.mp4 (80s)</pre>
+
+  <h2>🏗️ Architecture Summary</h2>
+  <table>
+    <tr><th>Component</th><th>Technology</th><th>Role</th></tr>
+    <tr><td>Supervisor Agent</td><td>LangGraph StateGraph</td><td>Orchestrates pipeline + HITL gate</td></tr>
+    <tr><td>Investigation Agent</td><td>Gemini 1.5 Flash LLM</td><td>Classify incident, assign severity, reasoning</td></tr>
+    <tr><td>RAG System</td><td>ChromaDB + gemini-embedding-001</td><td>7 traffic regulation knowledge docs</td></tr>
+    <tr><td>Weather Tool</td><td>OpenWeatherMap API</td><td>Real-time adverse weather context</td></tr>
+    <tr><td>UI</td><td>Streamlit 1.66+</td><td>5 tabs: monitor, queue, analytics, audit, health</td></tr>
+    <tr><td>HITL Gate</td><td>LangGraph interrupt</td><td>100% CRITICAL incidents require approval</td></tr>
+    <tr><td>Database</td><td>SQLite</td><td>Sensor readings, incidents, audit log, HITL decisions</td></tr>
+  </table>
+
+  <footer>Made with IBM Bob — IBM SkillsBuild Gartner Program 2026</footer>
+</div>
+</body>
+</html>
