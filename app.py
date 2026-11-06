@@ -17,11 +17,18 @@ from datetime import datetime, timezone
 import pandas as pd
 import streamlit as st
 
+import time as _time
 from utils.config import settings
 from utils.db import init_db, get_db
 from utils.audit_logger import log_action
 from tools.sensor_tools import simulate_sensor_reading, get_all_zone_statuses
 from agents.supervisor_agent import invoke_pipeline, resume_pipeline
+from utils.guardrails import (
+    run_all_input_guardrails,
+    run_all_output_guardrails,
+    record_token_usage,
+)
+from utils.performance_dashboard import render_performance_dashboard
 
 # ── Page configuration ────────────────────────────────────────────────────────
 st.set_page_config(
@@ -118,12 +125,13 @@ st.title("🚦 UrbanPulse — Traffic Command & Incident Response")
 st.caption(f"v{settings.APP_VERSION} | Operator: {st.session_state['operator_id']} | {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
 
 # ── Tabs ──────────────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "🗺️ Live Zone Monitor",
     "🚨 Incident Queue",
     "📊 Analytics",
     "📋 Audit Log",
     "⚙️ System Health",
+    "📊 Performance Dashboard",
 ])
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -144,10 +152,21 @@ with tab1:
         selected_scenario = st.selectbox("Simulation Scenario", scenario_options, key="sim_scenario")
 
     if st.button("🚨 Trigger AI Investigation", type="primary"):
-        with st.spinner(f"Investigating Zone {selected_zone}..."):
+        # ── Input Guardrails ────────────────────────────────────────────
+        zone_guard = run_all_input_guardrails(selected_zone, session_id=selected_zone)
+        if zone_guard.blocked:
+            st.error(f"⚠️ Input blocked: {', '.join(zone_guard.violations)}")
+        else:
+         with st.spinner(f"Investigating Zone {selected_zone}..."):
             simulate_sensor_reading(selected_zone, scenario=selected_scenario if selected_scenario != "auto" else None)
             session_id = str(uuid.uuid4())
+            _start = _time.time()
             result = invoke_pipeline(selected_zone, session_id=session_id)
+            _latency = (_time.time() - _start) * 1000
+            record_token_usage(50, 300, cost_usd=0.0003)
+            if "session_metrics" not in st.session_state:
+                st.session_state["session_metrics"] = {}
+            st.session_state["session_metrics"]["avg_latency_ms"] = _latency
             st.session_state["active_incidents"][session_id] = result
 
             incident = result.get("incident")
@@ -458,3 +477,9 @@ with tab5:
         "rag_top_k": settings.RAG_TOP_K,
         "log_level": settings.LOG_LEVEL,
     })
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TAB 6 — PERFORMANCE DASHBOARD
+# ═══════════════════════════════════════════════════════════════════════════════
+with tab6:
+    render_performance_dashboard(st.session_state.get("session_metrics", {}))
